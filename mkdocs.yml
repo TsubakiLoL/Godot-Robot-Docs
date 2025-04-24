@@ -11,3 +11,4 @@ markdown_extensions:
 nav:
   - 首页: index.md
   - 快速开始: first_bot.md
+  - 编写插件: add_plugin.md

@@ -12,6 +12,8 @@
         <link rel="prev" href="..">
       
       
+        <link rel="next" href="../add_plugin/">
+      
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
@@ -341,10 +343,41 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      登录蔷薇花园账户并运行节点集
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add_plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    编写插件
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -453,6 +486,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      登录蔷薇花园账户并运行节点集
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -470,7 +512,7 @@
 
 
 <h1 id="_1">开始编写您的第一个机器人</h1>
-<p>在本文档中，您将学会如何使用Starbot编写您的第一个聊天机器人（以IIROSE蔷薇花园为例）</p>
+<p>在本文档中，您将学会如何使用Starbot编写您的第一个聊天机器人（以IIROSE蔷薇花园为例），本文档实现的逻辑为：“当机器人收到房间消息‘你好’时进行回复‘你好呀’”。</p>
 <h2 id="_2">获取应用程序</h2>
 <p>可以从GitHub仓库获取本项目的源代码或分发的可执行文件</p>
 <p><a href="https://github.com/TsubakiLoL/Godot-Robot">Github仓库</a></p>
@@ -488,12 +530,28 @@
 <li>蔷薇花园API插件
 <img alt="" src="../img/first_robot/iirose.png" /></li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>如果没有对应的插件可以尝试去侧边栏插件市场去搜索下载
-</code></pre></div>
+<div style="
+  background:rgb(71, 75, 79);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  border: 1px solid #e1e4e8;
+">
+  <strong style="color:rgb(255, 255, 255)">如果没有对应的插件可以尝试去侧边栏插件市场去搜索下载</strong>
+</div>
+
 <h2 id="_4">开始编写可视化逻辑</h2>
 <p>拥有了以上插件依赖后，我们就可以为蔷薇花园编写一个基础的问答机器人逻辑了</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Starbot的可视化逻辑被保存成了一个文本文件，我们称之为“节点集”，文件的后缀名一般为.nodeset
-</code></pre></div>
+<div style="
+  background:rgb(71, 75, 79);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  border: 1px solid #e1e4e8;
+">
+  <strong style="color:rgb(255, 255, 255)">Starbot的可视化逻辑被保存成了一个文本文件，我们称之为“节点集”，文件的后缀名一般为.nodeset</strong>
+</div>
+
 <h3 id="_5">创建节点集文件</h3>
 <p>打开侧边栏中的节点集栏，我们可以点击创建节点集来进行新的节点逻辑的创建，创建完毕后，我们应该可以看到如下的条目
 <img alt="" src="../img/first_robot/nodeset.png" /></p>
@@ -560,6 +618,45 @@
 <img alt="" src="../img/first_robot/content.png" /></p>
 <p>这样我们就完成了消息的内容提取。</p>
 <h3 id="_9">编写响应式回复</h3>
+<p>既然我们已经提取了消息内容，下一步，就要判断消息内容为何了，为此，我们需要设置第二层过滤。</p>
+<p>添加一个字符串判定器，然后向其中的输入框填入“你好”，并将其与蔷薇消息内容处理器连接起来，我们就完成了消息内容的判定</p>
+<div style="
+  background:rgb(71, 75, 79);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  border: 1px solid #e1e4e8;
+">
+  <strong style="color:rgb(255, 255, 255)">什么是字符串判定器节点？</strong><br>
+  <span style="color:rgb(150, 150, 150)">
+  字符串判定器接受一个字符串输入，输出一个布尔类型值，当接受的输入和输入框输入的内容完全一致时，则向输出端口输出“真”，否则输出“假”。
+  </span>
+</div>
+
+<p>既然已经完成了用户消息内容的判定，下一步我们就要进行回复内容的编写。
+新建一个静态房间消息发送器（蔷薇花园），向其中输入回复“你好呀”，并将其连接到字符串判定器。</p>
+<div style="
+  background:rgb(71, 75, 79);
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  border: 1px solid #e1e4e8;
+">
+  <strong style="color:rgb(255, 255, 255)">什么静态房间信息发送器节点？</strong><br>
+  <span style="color:rgb(150, 150, 150)">
+ 静态房间信息发送器是蔷薇花园插件中对于蔷薇消息发送的封装，当输入端口收到“真”时，则向当前所在房间内发送输入框内输入的文本。
+  </span>
+</div>
+<p>至此，我们就完成了可视化逻辑的编写（别忘了ctrl+s保存修改，点击左上角“节点集按钮”，点击“关闭文件”回到主界面）。</p>
+<h2 id="_10">登录蔷薇花园账户并运行节点集</h2>
+<p>蔷薇花园插件为我们添加了一个控制面板
+<img alt="" src="../img/first_robot/iirose_panel.png" />
+（目前UI还较为简陋，可能会在将来版本更改）<br>
+登录操作后右上角变为绿色则为登录成功 <br>
+这时回到节点集界面,点击节点集条目的三角号进行运行。这时回到蔷薇进行测试，便可以看到自动回复了。
+<img alt="" src="../img/first_robot/run.png" />
+<img alt="" src="../img/first_robot/reply.png" /><br>
+恭喜你完成了这个示例项目！</p>
 
 
 
