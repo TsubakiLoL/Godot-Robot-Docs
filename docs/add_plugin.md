@@ -78,3 +78,28 @@ variable_type_array:Array |  需要通过节点UI输入的变量输入类型 | `
 variable_type_more:Array | 对于输入类型的补充数据（如多个选项选1的选项列表就在此定义，根据下标对应） | 暂无
 variable_name_view:Array | 输入的显示名称（如果存在）| ```["进入状态"]```
 
+
+## 插件可以调的部分全局API
+
+插件代码中可以访问的部分单例及其函数
+
+### Toast:提示消息单例
+
+函数名| 作用 | 示例
+-|-|-
+popup(str:String)->void | 弹出提示信息（主窗口） | ``` Toast.popup("这是一条提示") ```
+
+### ModLoader:插件管理器
+
+信号 | 作用
+-|-
+mod_changed | 当插件加载发生改变时发出
+
+函数名| 作用 | 示例
+-|-|-
+load_mod_from_path(path:String)->void | 从指定目录下重新装载插件（全部卸载后重新加载） | ``` ModLoader.load_mod_from_path("user://mod/") ```
+get_autoload(autoload_name:String)->Node/|获取某个插件加载的单例(包名/单例名) | ```ModLoader.get_autoload("iirose/iirose") ```
+get_all_node_class()->Array[[加载的节点名,加载的类的类体],...]|获取当前加载的所有节点的类数据| ```ModLoader.get_all_node_class() ```
+-|-|-
+-|-|-
+

@@ -303,6 +303,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件可以调的部分全局API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件可以调的部分全局API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Toast:提示消息单例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModLoader:插件管理器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -352,6 +385,39 @@
       节点脚本API
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      插件可以调的部分全局API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插件可以调的部分全局API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Toast:提示消息单例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModLoader:插件管理器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -496,6 +562,76 @@
 <td>variable_name_view:Array</td>
 <td>输入的显示名称（如果存在）</td>
 <td><code>["进入状态"]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="api_1">插件可以调的部分全局API</h2>
+<p>插件代码中可以访问的部分单例及其函数</p>
+<h3 id="toast">Toast:提示消息单例</h3>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>popup(str:String)-&gt;void</td>
+<td>弹出提示信息（主窗口）</td>
+<td><code>Toast.popup("这是一条提示")</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="modloader">ModLoader:插件管理器</h3>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mod_changed</td>
+<td>当插件加载发生改变时发出</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load_mod_from_path(path:String)-&gt;void</td>
+<td>从指定目录下重新装载插件（全部卸载后重新加载）</td>
+<td><code>ModLoader.load_mod_from_path("user://mod/")</code></td>
+</tr>
+<tr>
+<td>get_autoload(autoload_name:String)-&gt;Node/</td>
+<td>获取某个插件加载的单例(包名/单例名)</td>
+<td><code>ModLoader.get_autoload("iirose/iirose")</code></td>
+</tr>
+<tr>
+<td>get_all_node_class()-&gt;Array[[加载的节点名,加载的类的类体],...]</td>
+<td>获取当前加载的所有节点的类数据</td>
+<td><code>ModLoader.get_all_node_class()</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
